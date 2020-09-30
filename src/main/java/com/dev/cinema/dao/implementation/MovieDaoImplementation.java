@@ -1,7 +1,7 @@
 package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.interfaces.MovieDao;
-import com.dev.cinema.exceptions.DataBaseDataExchangeErrorException;
+import com.dev.cinema.exceptions.DatabaseDataExchangeErrorException;
 import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.util.HibernateUtil;
@@ -28,7 +28,7 @@ public class MovieDaoImplementation implements MovieDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataBaseDataExchangeErrorException(CREATE_MESSAGE, exception);
+            throw new DatabaseDataExchangeErrorException(CREATE_MESSAGE, exception);
         } finally {
             if (session != null) {
                 session.close();
@@ -42,7 +42,7 @@ public class MovieDaoImplementation implements MovieDao {
             Query<Movie> getAllMoviesQuery = session.createQuery("from Movie", Movie.class);
             return getAllMoviesQuery.getResultList();
         } catch (Exception exception) {
-            throw new DataBaseDataExchangeErrorException(GET_ALL_MESSAGE, exception);
+            throw new DatabaseDataExchangeErrorException(GET_ALL_MESSAGE, exception);
         }
     }
 }
