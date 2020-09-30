@@ -8,7 +8,7 @@ import com.dev.cinema.service.interfaces.MovieService;
 import java.util.List;
 
 @Service
-public class MovieServiceImplementation implements MovieService {
+public class MovieServiceImpl implements MovieService {
     @Inject
     private MovieDao movieDao;
 

@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 @Dao
-public class MovieDaoImplementation implements MovieDao {
+public class MovieDaoImpl implements MovieDao {
     public static final String CREATE_MESSAGE = "Failed to insert the Movie entity";
     public static final String GET_ALL_MESSAGE = "Failed to retrieve all of the Movies entities";
 
