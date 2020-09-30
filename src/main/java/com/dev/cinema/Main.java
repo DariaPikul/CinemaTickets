@@ -27,7 +27,7 @@ public class Main {
     private static void createAndPrintMovie(Movie movie) {
         System.out.println("Creating the movie-object:");
         System.out.println(movie
-                + "\nInserting the movie-object data into database:");
+                + "\nInserting the movie-object data into the database:");
         movie = movieService.create(movie);
         System.out.println(movie);
     }
