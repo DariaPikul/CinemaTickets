@@ -1,2 +1,2 @@
 # CinemaTickets
-Cinema: Sailing Tickets (Hibernate)
+Cinema: Selling Tickets (Hibernate)
