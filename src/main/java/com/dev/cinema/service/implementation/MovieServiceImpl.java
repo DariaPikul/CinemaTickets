@@ -18,6 +18,11 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public void remove(Movie entity) {
+        movieDao.remove(entity);
+    }
+
+    @Override
     public List<Movie> getAll() {
         return movieDao.getAll();
     }

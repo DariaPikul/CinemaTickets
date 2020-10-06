@@ -1,21 +1,22 @@
 package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
-import com.dev.cinema.dao.interfaces.MovieDao;
+import com.dev.cinema.dao.interfaces.CinemaHallDao;
 import com.dev.cinema.exceptions.DatabaseDataExchangeErrorException;
 import com.dev.cinema.library.Dao;
-import com.dev.cinema.model.Movie;
+import com.dev.cinema.model.CinemaHall;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 @Dao
-public class MovieDaoImpl extends AbstractDao<Movie> implements MovieDao {
+public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements CinemaHallDao {
     @Override
-    public List<Movie> getAll() {
+    public List<CinemaHall> getAll() {
         try (Session session = factory.openSession()) {
-            Query<Movie> getAllMoviesQuery = session.createQuery("from Movie", Movie.class);
-            return getAllMoviesQuery.getResultList();
+            Query<CinemaHall> getAllCinemaHallsQuery =
+                    session.createQuery("from CinemaHall", CinemaHall.class);
+            return getAllCinemaHallsQuery.getResultList();
         } catch (Exception exception) {
             throw new DatabaseDataExchangeErrorException(GET_ALL_MESSAGE, exception);
         }
