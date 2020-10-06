@@ -6,6 +6,7 @@ import com.dev.cinema.exceptions.DatabaseDataExchangeErrorException;
 import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.MovieSession;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -46,7 +47,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             root.fetch("cinemaHall", JoinType.INNER);
             Predicate showTimePredicate = criteriaBuilder.between(root.get("showTime"),
                     date.atStartOfDay(),
-                    date.atTime(23, 59, 59));
+                    date.atTime(LocalTime.MAX));
             Predicate moviePredicate = criteriaBuilder.equal(root.get("movie"), movieId);
             availableSessionsQuery.select(root).where(showTimePredicate, moviePredicate);
             return session.createQuery(availableSessionsQuery).getResultList();

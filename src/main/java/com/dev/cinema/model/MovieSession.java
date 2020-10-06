@@ -1,6 +1,7 @@
 package com.dev.cinema.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "movie_sessions")
 public class MovieSession {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -68,6 +71,6 @@ public class MovieSession {
                 + "id = " + id
                 + ", movie = " + movie
                 + ", cinemaHall = " + cinemaHall
-                + ", showTime = " + showTime;
+                + ", showTime = " + showTime.format(DATE_TIME_FORMATTER);
     }
 }
