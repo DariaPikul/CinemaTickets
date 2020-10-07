@@ -8,7 +8,8 @@ import org.hibernate.Transaction;
 public abstract class AbstractDao<T> {
     protected static final String CREATE_MESSAGE = "Failed to create the entity ";
     protected static final String REMOVE_MESSAGE = "Failed to remove the entity ";
-    protected static final String GET_ALL_MESSAGE = "Failed to retrieve the list of all entities - ";
+    protected static final String GET_ALL_MESSAGE =
+            "Failed to retrieve the list of all entities - ";
     protected final SessionFactory factory;
 
     protected AbstractDao() {
