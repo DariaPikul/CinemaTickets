@@ -61,7 +61,6 @@ public class User {
     public String toString() {
         return "User: "
                 + "id = " + id
-                + ", email = " + email
-                + ", password = " + password;
+                + ", email = " + email;
     }
 }
