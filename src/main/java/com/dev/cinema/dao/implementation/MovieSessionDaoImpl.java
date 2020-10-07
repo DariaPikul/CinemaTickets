@@ -2,7 +2,7 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.MovieSessionDao;
-import com.dev.cinema.exceptions.DatabaseDataExchangeErrorException;
+import com.dev.cinema.exceptions.DatabaseDataExchangeException;
 import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.MovieSession;
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ import org.hibernate.Session;
 @Dao
 public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements MovieSessionDao {
     protected static final String AVAILABLE_SESSIONS_MESSAGE =
-            "Failed to find available sessions by such parameters";
+            "Failed to find available sessions by such parameters: ";
 
     @Override
     public List<MovieSession> getAll() {
@@ -32,7 +32,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             getAllMovieSessionsQuery.select(root);
             return session.createQuery(getAllMovieSessionsQuery).getResultList();
         } catch (Exception exception) {
-            throw new DatabaseDataExchangeErrorException(GET_ALL_MESSAGE
+            throw new DatabaseDataExchangeException(GET_ALL_MESSAGE
                     + MovieSession.class.getName(), exception);
         }
     }
@@ -53,7 +53,9 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             availableSessionsQuery.select(root).where(showTimePredicate, moviePredicate);
             return session.createQuery(availableSessionsQuery).getResultList();
         } catch (Exception exception) {
-            throw new RuntimeException(AVAILABLE_SESSIONS_MESSAGE, exception);
+            throw new DatabaseDataExchangeException(AVAILABLE_SESSIONS_MESSAGE
+                    + "movie_id = " + movieId
+                    + ", date = " + date, exception);
         }
     }
 }

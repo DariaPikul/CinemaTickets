@@ -63,18 +63,6 @@ public class Main {
         createAndPrintMovieSession(secondMovieSession);
         printAllMovieSessions();
         findAndPrintAvailableMovieSessions(secondMovie.getId(), LocalDate.now());
-
-        printAllMovieSessions();
-        removeAndPrintMovieSession(secondMovieSession);
-        printAllMovieSessions();
-
-        printAllMovies();
-        removeAndPrintMovie(secondMovie);
-        printAllMovies();
-
-        printAllCinemaHalls();
-        removeAndPrintCinemaHall(secondCinemaHall);
-        printAllCinemaHalls();
     }
 
     private static void createAndPrintMovie(Movie movie) {
@@ -83,11 +71,6 @@ public class Main {
                 + "\nInserting the movie-object data into the database:");
         movie = movieService.create(movie);
         System.out.println(movie);
-    }
-
-    private static void removeAndPrintMovie(Movie movie) {
-        System.out.println("\nRemoving the second movie-object:" + movie);
-        movieService.remove(movie);
     }
 
     private static void printAllMovies() {
@@ -101,11 +84,6 @@ public class Main {
                 + "\nInserting the cinema hall-object data into the database:");
         cinemaHall = cinemaHallService.create(cinemaHall);
         System.out.println(cinemaHall);
-    }
-
-    private static void removeAndPrintCinemaHall(CinemaHall cinemaHall) {
-        System.out.println("\nRemoving the second cinema hall-object:" + cinemaHall);
-        cinemaHallService.remove(cinemaHall);
     }
 
     private static void printAllCinemaHalls() {
@@ -124,11 +102,6 @@ public class Main {
     private static void findAndPrintAvailableMovieSessions(Long movieId, LocalDate date) {
         System.out.println("\nSearching fot the available movie sessions:");
         System.out.println(movieSessionService.findAvailableSessions(movieId, date));
-    }
-
-    private static void removeAndPrintMovieSession(MovieSession movieSession) {
-        System.out.println("\nRemoving the second movie session-object:" + movieSession);
-        movieSessionService.remove(movieSession);
     }
 
     private static void printAllMovieSessions() {

@@ -18,11 +18,6 @@ public class CinemaHallServiceImpl implements CinemaHallService {
     }
 
     @Override
-    public void remove(CinemaHall cinemaHall) {
-        cinemaHallDao.remove(cinemaHall);
-    }
-
-    @Override
     public List<CinemaHall> getAll() {
         return cinemaHallDao.getAll();
     }

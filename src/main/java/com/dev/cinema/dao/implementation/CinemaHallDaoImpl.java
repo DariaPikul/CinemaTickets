@@ -2,7 +2,6 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.CinemaHallDao;
-import com.dev.cinema.exceptions.DatabaseDataExchangeErrorException;
 import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.CinemaHall;
 import java.util.List;
@@ -17,9 +16,6 @@ public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements Cinema
             Query<CinemaHall> getAllCinemaHallsQuery =
                     session.createQuery("from CinemaHall", CinemaHall.class);
             return getAllCinemaHallsQuery.getResultList();
-        } catch (Exception exception) {
-            throw new DatabaseDataExchangeErrorException(GET_ALL_MESSAGE
-                    + CinemaHall.class.getName(), exception);
         }
     }
 }

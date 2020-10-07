@@ -17,12 +17,12 @@ public class MovieSession {
             DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    Movie movie;
+    private Movie movie;
     @ManyToOne(fetch = FetchType.LAZY)
-    CinemaHall cinemaHall;
-    LocalDateTime showTime;
+    private CinemaHall cinemaHall;
+    private LocalDateTime showTime;
 
     public MovieSession() {
     }
