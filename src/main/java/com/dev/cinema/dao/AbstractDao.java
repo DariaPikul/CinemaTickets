@@ -26,7 +26,8 @@ public abstract class AbstractDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DatabaseDataExchangeException("Failed to create the entity - " + entity, exception);
+            throw new DatabaseDataExchangeException("Failed to create the entity - "
+                    + entity, exception);
         } finally {
             if (session != null) {
                 session.close();
