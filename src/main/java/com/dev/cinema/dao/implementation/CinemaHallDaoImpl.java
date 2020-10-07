@@ -18,7 +18,8 @@ public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements Cinema
                     session.createQuery("from CinemaHall", CinemaHall.class);
             return getAllCinemaHallsQuery.getResultList();
         } catch (Exception exception) {
-            throw new DatabaseDataExchangeErrorException(GET_ALL_MESSAGE, exception);
+            throw new DatabaseDataExchangeErrorException(GET_ALL_MESSAGE
+                    + CinemaHall.class.getName(), exception);
         }
     }
 }

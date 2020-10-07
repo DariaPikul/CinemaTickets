@@ -17,7 +17,8 @@ public class MovieDaoImpl extends AbstractDao<Movie> implements MovieDao {
             Query<Movie> getAllMoviesQuery = session.createQuery("from Movie", Movie.class);
             return getAllMoviesQuery.getResultList();
         } catch (Exception exception) {
-            throw new DatabaseDataExchangeErrorException(GET_ALL_MESSAGE, exception);
+            throw new DatabaseDataExchangeErrorException(GET_ALL_MESSAGE
+                    + Movie.class.getName(), exception);
         }
     }
 }
