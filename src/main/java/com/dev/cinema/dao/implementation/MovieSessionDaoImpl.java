@@ -17,9 +17,6 @@ import org.hibernate.Session;
 
 @Dao
 public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements MovieSessionDao {
-    protected static final String AVAILABLE_SESSIONS_MESSAGE =
-            "Failed to find available sessions by such parameters: ";
-
     @Override
     public List<MovieSession> getAll() {
         try (Session session = factory.openSession()) {
@@ -50,7 +47,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             availableSessionsQuery.select(root).where(showTimePredicate, moviePredicate);
             return session.createQuery(availableSessionsQuery).getResultList();
         } catch (Exception exception) {
-            throw new DatabaseDataExchangeException(AVAILABLE_SESSIONS_MESSAGE
+            throw new DatabaseDataExchangeException("Failed to find available sessions "
+                    + "by such parameters: "
                     + "movie_id = " + movieId
                     + ", date = " + date, exception);
         }
