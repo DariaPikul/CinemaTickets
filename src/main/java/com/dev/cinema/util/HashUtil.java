@@ -19,8 +19,7 @@ public class HashUtil {
         return salt;
     }
 
-    public static String hashPassword(String password, byte[] salt)
-            throws PasswordHashingException {
+    public static String hashPassword(String password, byte[] salt) {
         StringBuilder hashedPassword = new StringBuilder();
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(HASHING_ALGORITHM);

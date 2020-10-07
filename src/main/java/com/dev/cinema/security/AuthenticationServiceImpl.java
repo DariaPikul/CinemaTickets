@@ -34,8 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return userService.create(registeringUser);
     }
 
-    private boolean isPasswordInvalid(String password, User userFromDB)
-            throws PasswordHashingException {
+    private boolean isPasswordInvalid(String password, User userFromDB) {
         return !HashUtil.hashPassword(password,
                 userFromDB.getSalt()).equals(userFromDB.getPassword());
     }

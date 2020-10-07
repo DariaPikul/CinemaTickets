@@ -1,6 +1,5 @@
 package com.dev.cinema;
 
-import com.dev.cinema.exceptions.DatabaseDataExchangeException;
 import com.dev.cinema.library.Injector;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.Movie;
@@ -46,6 +45,9 @@ public class Main {
             LocalDateTime.now();
 
     public static void main(String[] args) {
+        /*
+        * Movies
+        * */
         printAllMovies();
         Movie firstMovie = new Movie(FIRST_MOVIE_TITLE, FIRST_MOVIE_DESCRIPTION);
         createAndPrintMovie(firstMovie);
@@ -53,7 +55,9 @@ public class Main {
         Movie secondMovie = new Movie(SECOND_MOVIE_TITLE, SECOND_MOVIE_DESCRIPTION);
         createAndPrintMovie(secondMovie);
         printAllMovies();
-
+        /*
+         * Cinema Halls
+         * */
         printAllCinemaHalls();
         CinemaHall firstCinemaHall = new CinemaHall(FIRST_HALL_CAPACITY, FIRST_HALL_DESCRIPTION);
         createAndPrintCinemaHall(firstCinemaHall);
@@ -61,7 +65,9 @@ public class Main {
         CinemaHall secondCinemaHall = new CinemaHall(SECOND_HALL_CAPACITY, SECOND_HALL_DESCRIPTION);
         createAndPrintCinemaHall(secondCinemaHall);
         printAllCinemaHalls();
-
+        /*
+         * Movie Sessions
+         * */
         printAllMovieSessions();
         MovieSession firstMovieSession =
                 new MovieSession(firstMovie, firstCinemaHall, FIRST_SHOW_TIME);
@@ -72,7 +78,9 @@ public class Main {
         createAndPrintMovieSession(secondMovieSession);
         printAllMovieSessions();
         findAndPrintAvailableMovieSessions(secondMovie.getId(), LocalDate.now());
-
+        /*
+         * Users
+         * */
         printAllUsers();
         User userAlice = new User(FIRST_EMAIL, FIRST_PASSWORD);
         registerAndPrintUser(userAlice);
@@ -134,7 +142,7 @@ public class Main {
                 + "\nInserting the user-object data into the database:");
         try {
             user = userService.create(user);
-        } catch (DatabaseDataExchangeException exception) {
+        } catch (Exception exception) {
             System.out.println("Oops! You did it again! You've used this e-mail :<");
         }
         System.out.println(user);

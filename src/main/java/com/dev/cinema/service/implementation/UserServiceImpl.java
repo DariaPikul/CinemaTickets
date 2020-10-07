@@ -1,8 +1,6 @@
 package com.dev.cinema.service.implementation;
 
 import com.dev.cinema.dao.interfaces.UserDao;
-import com.dev.cinema.exceptions.DatabaseDataExchangeException;
-import com.dev.cinema.exceptions.PasswordHashingException;
 import com.dev.cinema.library.Inject;
 import com.dev.cinema.library.Service;
 import com.dev.cinema.model.User;
@@ -21,12 +19,7 @@ public class UserServiceImpl implements UserService {
         byte[] salt = HashUtil.getSalt();
         user.setSalt(salt);
         String hashedPassword = null;
-        try {
-            hashedPassword = HashUtil.hashPassword(user.getPassword(), salt);
-        } catch (PasswordHashingException exception) {
-            throw new DatabaseDataExchangeException("Failed to create the user "
-                    + user, exception);
-        }
+        hashedPassword = HashUtil.hashPassword(user.getPassword(), salt);
         user.setPassword(hashedPassword);
         return userDao.create(user);
     }
