@@ -7,9 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public abstract class AbstractDao<T> {
-    protected static final String CREATE_MESSAGE = "Failed to create the entity - ";
-    protected static final String GET_ALL_MESSAGE =
-            "Failed to retrieve the list of all entities - ";
     protected final SessionFactory factory;
 
     protected AbstractDao() {
@@ -29,7 +26,7 @@ public abstract class AbstractDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DatabaseDataExchangeException(CREATE_MESSAGE + entity, exception);
+            throw new DatabaseDataExchangeException("Failed to create the entity - " + entity, exception);
         } finally {
             if (session != null) {
                 session.close();

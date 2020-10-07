@@ -31,9 +31,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             root.fetch("cinemaHall", JoinType.INNER);
             getAllMovieSessionsQuery.select(root);
             return session.createQuery(getAllMovieSessionsQuery).getResultList();
-        } catch (Exception exception) {
-            throw new DatabaseDataExchangeException(GET_ALL_MESSAGE
-                    + MovieSession.class.getName(), exception);
         }
     }
 
