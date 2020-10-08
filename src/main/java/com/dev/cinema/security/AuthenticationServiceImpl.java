@@ -1,7 +1,6 @@
 package com.dev.cinema.security;
 
 import com.dev.cinema.exceptions.AuthenticationException;
-import com.dev.cinema.exceptions.PasswordHashingException;
 import com.dev.cinema.library.Inject;
 import com.dev.cinema.library.Service;
 import com.dev.cinema.model.User;
@@ -15,8 +14,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private UserService userService;
 
     @Override
-    public User login(String email, String password) throws AuthenticationException,
-            PasswordHashingException {
+    public User login(String email, String password) throws AuthenticationException {
         Optional<User> existingUser = userService.findByEmail(email);
         if (existingUser.isEmpty()
                 || isPasswordInvalid(password, existingUser.get())) {

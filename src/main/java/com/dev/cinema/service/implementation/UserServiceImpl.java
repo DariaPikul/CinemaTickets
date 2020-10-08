@@ -18,8 +18,7 @@ public class UserServiceImpl implements UserService {
     public User create(User user) {
         byte[] salt = HashUtil.getSalt();
         user.setSalt(salt);
-        String hashedPassword = HashUtil.hashPassword(user.getPassword(), salt);
-        user.setPassword(hashedPassword);
+        user.setPassword(HashUtil.hashPassword(user.getPassword(), salt));
         return userDao.create(user);
     }
 
