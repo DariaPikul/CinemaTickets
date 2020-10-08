@@ -17,17 +17,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User login(String email, String password) throws AuthenticationException,
             PasswordHashingException {
-        final String message = "Incorrect email or password.";
         Optional<User> existingUser = userService.findByEmail(email);
         if (existingUser.isEmpty()
                 || isPasswordInvalid(password, existingUser.get())) {
-            throw new AuthenticationException(message);
+            throw new AuthenticationException("Incorrect email or password.");
         }
         return existingUser.get();
     }
 
     @Override
-    public User register(String email, String password) throws PasswordHashingException {
+    public User register(String email, String password) {
         User registeringUser = new User();
         registeringUser.setEmail(email);
         registeringUser.setPassword(password);
