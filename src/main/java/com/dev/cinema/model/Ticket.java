@@ -14,9 +14,9 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private MovieSession movieSession;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private User user;
 
     public Ticket() {
