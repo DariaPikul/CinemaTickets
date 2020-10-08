@@ -17,13 +17,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-        if (user == null) {
-            throw new DatabaseDataExchangeException("Failed to create the null user");
-        }
         byte[] salt = HashUtil.getSalt();
         user.setSalt(salt);
-        String hashedPassword = null;
-        hashedPassword = HashUtil.hashPassword(user.getPassword(), salt);
+        String hashedPassword = HashUtil.hashPassword(user.getPassword(), salt);
         user.setPassword(hashedPassword);
         return userDao.create(user);
     }
