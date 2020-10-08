@@ -1,7 +1,6 @@
 package com.dev.cinema.service.implementation;
 
 import com.dev.cinema.dao.interfaces.UserDao;
-import com.dev.cinema.exceptions.DatabaseDataExchangeException;
 import com.dev.cinema.library.Inject;
 import com.dev.cinema.library.Service;
 import com.dev.cinema.model.User;
