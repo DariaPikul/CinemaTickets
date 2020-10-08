@@ -209,8 +209,7 @@ public class Main {
         shoppingCartService.getAll().forEach(System.out::println);
     }
 
-    private static void addSessionToShoppingCart(MovieSession movieSession,
-                                                       User user) {
+    private static void addSessionToShoppingCart(MovieSession movieSession, User user) {
         System.out.println("\nAdding the movie session - " + movieSession
                 + "to the shopping cart of the user - " + user);
         shoppingCartService.addSession(movieSession, user);
