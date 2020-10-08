@@ -13,7 +13,7 @@ public class MovieDaoImpl extends AbstractDao<Movie> implements MovieDao {
     @Override
     public List<Movie> getAll() {
         try (Session session = factory.openSession()) {
-            Query<Movie> getAllMoviesQuery = session.createQuery("from Movie", Movie.class);
+            Query<Movie> getAllMoviesQuery = session.createQuery("FROM Movie", Movie.class);
             return getAllMoviesQuery.getResultList();
         }
     }

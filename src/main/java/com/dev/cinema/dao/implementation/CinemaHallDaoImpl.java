@@ -14,7 +14,7 @@ public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements Cinema
     public List<CinemaHall> getAll() {
         try (Session session = factory.openSession()) {
             Query<CinemaHall> getAllCinemaHallsQuery =
-                    session.createQuery("from CinemaHall", CinemaHall.class);
+                    session.createQuery("FROM CinemaHall", CinemaHall.class);
             return getAllCinemaHallsQuery.getResultList();
         }
     }
