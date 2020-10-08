@@ -4,10 +4,13 @@ import com.dev.cinema.library.Injector;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
+import com.dev.cinema.security.AuthenticationService;
 import com.dev.cinema.service.interfaces.CinemaHallService;
 import com.dev.cinema.service.interfaces.MovieService;
 import com.dev.cinema.service.interfaces.MovieSessionService;
+import com.dev.cinema.service.interfaces.ShoppingCartService;
 import com.dev.cinema.service.interfaces.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +26,10 @@ public class Main {
             (MovieSessionService) injector.getInstance(MovieSessionService.class);
     private static final UserService userService =
             (UserService) injector.getInstance(UserService.class);
+    private static final AuthenticationService authenticationService =
+            (AuthenticationService) injector.getInstance(AuthenticationService.class);
+    private static final ShoppingCartService shoppingCartService =
+            (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
     private static final String FIRST_EMAIL = "alice@mail.com";
     private static final String FIRST_PASSWORD = "AliceLovesBob";
     private static final String SECOND_EMAIL = "bob@mail.com";
@@ -46,8 +53,8 @@ public class Main {
 
     public static void main(String[] args) {
         /*
-        * Movies
-        * */
+         * Movies
+         * */
         printAllMovies();
         Movie firstMovie = new Movie(FIRST_MOVIE_TITLE, FIRST_MOVIE_DESCRIPTION);
         createAndPrintMovie(firstMovie);
@@ -82,14 +89,32 @@ public class Main {
          * Users
          * */
         printAllUsers();
-        User userAlice = new User(FIRST_EMAIL, FIRST_PASSWORD);
-        registerAndPrintUser(userAlice);
+        registerAndPrintUser(FIRST_EMAIL, FIRST_PASSWORD);
         printAllUsers();
-        User userBob = new User(SECOND_EMAIL, SECOND_PASSWORD);
-        registerAndPrintUser(userBob);
-        registerAndPrintUser(userBob);
+        registerAndPrintUser(SECOND_EMAIL, SECOND_PASSWORD);
+        registerAndPrintUser(SECOND_EMAIL, SECOND_PASSWORD);
         printAllUsers();
+        loginAndPrintUser(FIRST_EMAIL, FIRST_PASSWORD);
+        loginAndPrintUser(SECOND_EMAIL, SECOND_PASSWORD);
         findAndPrintUserByEmail(FIRST_EMAIL);
+        findAndPrintUserByEmail(SECOND_EMAIL);
+        User userAlice = userService.findByEmail(FIRST_EMAIL).get();
+        User userBob = userService.findByEmail(SECOND_EMAIL).get();
+        /*
+         * Shopping Cart
+         * */
+        registerAndPrintShoppingCart(userAlice);
+        printAllShoppingCarts();
+        registerAndPrintShoppingCart(userBob);
+        printAllShoppingCarts();
+        addSessionToShoppingCart(firstMovieSession, userAlice);
+        addSessionToShoppingCart(secondMovieSession, userBob);
+        printAllShoppingCarts();
+        getAndPrintShoppingCartByUser(userAlice);
+        getAndPrintShoppingCartByUser(userBob);
+        ShoppingCart shoppingCartAlice = shoppingCartService.getByUser(userAlice);
+        shoppingCartService.clear(shoppingCartAlice);
+        printAllShoppingCarts();
     }
 
     private static void createAndPrintMovie(Movie movie) {
@@ -136,16 +161,28 @@ public class Main {
         movieSessionService.getAll().forEach(System.out::println);
     }
 
-    private static void registerAndPrintUser(User user) {
-        System.out.println("\nCreating the user-object:");
-        System.out.println(user
-                + "\nInserting the user-object data into the database:");
+    private static void registerAndPrintUser(String email, String password) {
+        System.out.println("\nRegistering the user with the e-mail - " + email
+                + " and the password - " + password);
+        User user;
         try {
-            user = userService.create(user);
+            user = authenticationService.register(email, password);
         } catch (Exception exception) {
             System.out.println("Oops! You did it again! You've used this e-mail :<");
         }
-        System.out.println(user);
+        System.out.println("The user was registered successfully!");
+    }
+
+    private static void loginAndPrintUser(String email, String password) {
+        System.out.println("\nAuthenticating the user with the e-mail - " + email
+                + " and the password - " + password);
+        User user = null;
+        try {
+            user = authenticationService.login(email, password);
+        } catch (Exception exception) {
+            System.out.println("Oops! You did it again! You've used this e-mail :<");
+        }
+        System.out.println("The user was authenticated successfully! " + user);
     }
 
     private static void printAllUsers() {
@@ -156,5 +193,27 @@ public class Main {
     private static void findAndPrintUserByEmail(String email) {
         System.out.println("\nSearching for the user with email: " + email);
         System.out.println(userService.findByEmail(email));
+    }
+
+    private static void registerAndPrintShoppingCart(User user) {
+        System.out.println("\nCreating the shopping cart-object for the user - " + user);
+        shoppingCartService.registerNewShoppingCart(user);
+    }
+
+    private static void getAndPrintShoppingCartByUser(User user) {
+        System.out.println("\nSearching for the shopping cart by user: " + user);
+        System.out.println(shoppingCartService.getByUser(user));
+    }
+
+    private static void printAllShoppingCarts() {
+        System.out.println("\nAll shopping carts:");
+        shoppingCartService.getAll().forEach(System.out::println);
+    }
+
+    private static void addSessionToShoppingCart(MovieSession movieSession,
+                                                       User user) {
+        System.out.println("\nAdding the movie session - " + movieSession
+                + "to the shopping cart of the user - " + user);
+        shoppingCartService.addSession(movieSession, user);
     }
 }

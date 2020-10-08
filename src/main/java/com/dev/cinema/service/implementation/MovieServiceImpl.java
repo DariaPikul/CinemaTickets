@@ -21,4 +21,9 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> getAll() {
         return movieDao.getAll();
     }
+
+    @Override
+    public void update(Movie movie) {
+        movieDao.update(movie);
+    }
 }
