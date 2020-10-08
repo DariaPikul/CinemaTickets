@@ -103,9 +103,6 @@ public class Main {
         /*
          * Shopping Cart
          * */
-        registerAndPrintShoppingCart(userAlice);
-        printAllShoppingCarts();
-        registerAndPrintShoppingCart(userBob);
         printAllShoppingCarts();
         addSessionToShoppingCart(firstMovieSession, userAlice);
         addSessionToShoppingCart(secondMovieSession, userBob);
@@ -192,11 +189,6 @@ public class Main {
     private static void findAndPrintUserByEmail(String email) {
         System.out.println("\nSearching for the user with email: " + email);
         System.out.println(userService.findByEmail(email));
-    }
-
-    private static void registerAndPrintShoppingCart(User user) {
-        System.out.println("\nCreating the shopping cart-object for the user - " + user);
-        shoppingCartService.registerNewShoppingCart(user);
     }
 
     private static void getAndPrintShoppingCartByUser(User user) {
