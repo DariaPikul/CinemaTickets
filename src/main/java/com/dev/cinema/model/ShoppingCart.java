@@ -44,21 +44,12 @@ public class ShoppingCart {
         this.tickets = tickets;
     }
 
-    public void addTicket(Ticket ticket) {
-        tickets.add(ticket);
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public ShoppingCart clear() {
-        tickets = Collections.EMPTY_LIST;
-        return this;
     }
 
     @Override
