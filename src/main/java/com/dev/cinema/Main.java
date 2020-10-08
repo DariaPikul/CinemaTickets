@@ -112,8 +112,7 @@ public class Main {
         printAllShoppingCarts();
         getAndPrintShoppingCartByUser(userAlice);
         getAndPrintShoppingCartByUser(userBob);
-        ShoppingCart shoppingCartAlice = shoppingCartService.getByUser(userAlice);
-        shoppingCartService.clear(shoppingCartAlice);
+        clearShoppingCart(shoppingCartService.getByUser(userAlice));
         printAllShoppingCarts();
     }
 
@@ -215,5 +214,10 @@ public class Main {
         System.out.println("\nAdding the movie session - " + movieSession
                 + "to the shopping cart of the user - " + user);
         shoppingCartService.addSession(movieSession, user);
+    }
+
+    private static void clearShoppingCart(ShoppingCart shoppingCart) {
+        System.out.println("\nClearing the shopping cart with id = " + shoppingCart.getId());
+        shoppingCartService.clear(shoppingCart);
     }
 }
