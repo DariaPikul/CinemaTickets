@@ -1,6 +1,5 @@
 package com.dev.cinema.model;
 
-import java.util.Collections;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
