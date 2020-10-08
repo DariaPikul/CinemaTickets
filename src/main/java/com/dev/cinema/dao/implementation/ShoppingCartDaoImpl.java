@@ -2,7 +2,6 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.ShoppingCartDao;
-import com.dev.cinema.exceptions.DatabaseDataExchangeException;
 import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
@@ -23,9 +22,6 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
                             + "left join fetch sc.user WHERE sc.user = :user", ShoppingCart.class)
                     .setParameter("user", user)
                     .uniqueResultOptional();
-        } catch (Exception exception) {
-            throw new DatabaseDataExchangeException("Failed to get the shopping cart by user - "
-                    + user, exception);
         }
     }
 
