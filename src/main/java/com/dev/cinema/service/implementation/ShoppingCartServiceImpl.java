@@ -14,9 +14,9 @@ import java.util.List;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
-    ShoppingCartDao shoppingCartDao;
+    private ShoppingCartDao shoppingCartDao;
     @Inject
-    TicketDao ticketDao;
+    private TicketDao ticketDao;
 
     @Override
     public ShoppingCart getByUser(User user) {
