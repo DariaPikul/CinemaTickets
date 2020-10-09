@@ -31,9 +31,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User registeringUser = new User();
         registeringUser.setEmail(email);
         registeringUser.setPassword(password);
-        User registeredUser = userService.create(registeringUser);
-        shoppingCartService.registerNewShoppingCart(registeredUser);
-        return registeredUser;
+        registeringUser = userService.create(registeringUser);
+        shoppingCartService.registerNewShoppingCart(registeringUser);
+        return registeringUser;
     }
 
     private boolean isPasswordInvalid(String password, User userFromDB) {
