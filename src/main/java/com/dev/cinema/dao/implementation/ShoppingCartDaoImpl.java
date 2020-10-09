@@ -19,7 +19,7 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
     public Optional<ShoppingCart> getByUser(User user) {
         try (Session session = factory.openSession()) {
             return session.createQuery("FROM ShoppingCart sc left join fetch sc.tickets "
-                            + "left join fetch sc.user WHERE sc.user = :user", ShoppingCart.class)
+                            + "join fetch sc.user WHERE sc.user = :user", ShoppingCart.class)
                     .setParameter("user", user)
                     .uniqueResultOptional();
         }
