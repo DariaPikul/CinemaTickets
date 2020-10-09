@@ -7,7 +7,6 @@ import com.dev.cinema.model.User;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 @Dao
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
@@ -22,9 +21,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public List<User> getAll() {
-        try (Session session = factory.openSession()) {
-            Query<User> getAllUsersQuery = session.createQuery("FROM User", User.class);
-            return getAllUsersQuery.getResultList();
-        }
+        return super.getAll(User.class);
     }
 }
