@@ -17,8 +17,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     @Override
     public List<Order> getAllByUser(User user) {
         try (Session session = factory.openSession()) {
-            return session.createQuery("FROM Order o join fetch o.tickets "
-                    + "WHERE o.user = :user", Order.class)
+            return session.createQuery("SELECT DISTINCT o FROM Order o "
+                    + "JOIN FETCH o.tickets WHERE o.user = :user", Order.class)
                     .setParameter("user", user)
                     .getResultList();
         }
