@@ -10,6 +10,7 @@ import com.dev.cinema.security.AuthenticationService;
 import com.dev.cinema.service.interfaces.CinemaHallService;
 import com.dev.cinema.service.interfaces.MovieService;
 import com.dev.cinema.service.interfaces.MovieSessionService;
+import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import com.dev.cinema.service.interfaces.UserService;
 import java.time.LocalDate;
@@ -30,6 +31,8 @@ public class Main {
             (AuthenticationService) injector.getInstance(AuthenticationService.class);
     private static final ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+    private static final OrderService orderService =
+            (OrderService) injector.getInstance(OrderService.class);
     private static final String FIRST_EMAIL = "alice@mail.com";
     private static final String FIRST_PASSWORD = "AliceLovesBob";
     private static final String SECOND_EMAIL = "bob@mail.com";
@@ -111,6 +114,19 @@ public class Main {
         getAndPrintShoppingCartByUser(userBob);
         clearShoppingCart(shoppingCartService.getByUser(userAlice));
         printAllShoppingCarts();
+        /*
+         * Orders
+         * */
+        printAllOrders();
+        completeOrder(shoppingCartService.getByUser(userBob));
+        printOrderHistoryByUser(userBob);
+        addSessionToShoppingCart(firstMovieSession, userBob);
+        completeOrder(shoppingCartService.getByUser(userBob));
+        printOrderHistoryByUser(userBob);
+        addSessionToShoppingCart(firstMovieSession, userAlice);
+        completeOrder(shoppingCartService.getByUser(userAlice));
+        printOrderHistoryByUser(userAlice);
+        printAllOrders();
     }
 
     private static void createAndPrintMovie(Movie movie) {
@@ -210,5 +226,18 @@ public class Main {
     private static void clearShoppingCart(ShoppingCart shoppingCart) {
         System.out.println("\nClearing the shopping cart with id = " + shoppingCart.getId());
         shoppingCartService.clear(shoppingCart);
+    }
+
+    private static void printAllOrders() {
+        System.out.println("\nAll orders:");
+        orderService.getAll().forEach(System.out::println);
+    }
+
+    private static void completeOrder(ShoppingCart shoppingCart) {
+        orderService.completeOrder(shoppingCart);
+    }
+
+    private static void printOrderHistoryByUser(User user) {
+        orderService.getOrderHistory(user).forEach(System.out::println);
     }
 }
