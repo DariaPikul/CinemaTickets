@@ -53,6 +53,9 @@ public class Main {
                     DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
     private static final LocalDateTime SECOND_SHOW_TIME =
             LocalDateTime.now();
+    private static final LocalDateTime THIRD_SHOW_TIME =
+            LocalDateTime.parse("03-12-2020 11:30:00",
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
     public static void main(String[] args) {
         /*
@@ -86,6 +89,9 @@ public class Main {
         MovieSession secondMovieSession =
                 new MovieSession(secondMovie, secondCinemaHall, SECOND_SHOW_TIME);
         createAndPrintMovieSession(secondMovieSession);
+        MovieSession thirdMovieSession =
+                new MovieSession(secondMovie, secondCinemaHall, THIRD_SHOW_TIME);
+        createAndPrintMovieSession(thirdMovieSession);
         printAllMovieSessions();
         findAndPrintAvailableMovieSessions(secondMovie.getId(), LocalDate.now());
         /*
@@ -121,6 +127,7 @@ public class Main {
         completeOrder(shoppingCartService.getByUser(userBob));
         printOrderHistoryByUser(userBob);
         addSessionToShoppingCart(firstMovieSession, userBob);
+        addSessionToShoppingCart(thirdMovieSession, userBob);
         completeOrder(shoppingCartService.getByUser(userBob));
         printOrderHistoryByUser(userBob);
         addSessionToShoppingCart(firstMovieSession, userAlice);
