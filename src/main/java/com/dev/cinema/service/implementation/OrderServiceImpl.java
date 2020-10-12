@@ -29,9 +29,8 @@ public class OrderServiceImpl implements OrderService {
         User user = shoppingCart.getUser();
         List<Ticket> tickets = shoppingCart.getTickets();
         Order order = new Order(user, tickets, LocalDateTime.now());
-        order = create(order);
         shoppingCartService.clear(shoppingCart);
-        return order;
+        return create(order);
     }
 
     @Override
