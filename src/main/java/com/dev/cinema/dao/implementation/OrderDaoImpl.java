@@ -6,7 +6,6 @@ import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.Order;
 import com.dev.cinema.model.User;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
