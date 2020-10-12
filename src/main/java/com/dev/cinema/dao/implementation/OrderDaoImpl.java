@@ -32,7 +32,6 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
                     criteriaBuilder.createQuery(Order.class);
             Root<Order> root = getAllOrdersQuery.from(Order.class);
             root.fetch("tickets", JoinType.LEFT);
-            root.fetch("user", JoinType.INNER);
             getAllOrdersQuery.distinct(true);
             getAllOrdersQuery.select(root);
             return session.createQuery(getAllOrdersQuery).getResultList();
