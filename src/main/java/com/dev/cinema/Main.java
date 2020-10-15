@@ -58,7 +58,7 @@ public class Main {
     private static final LocalDateTime THIRD_SHOW_TIME =
             LocalDateTime.parse("03-12-2020 11:30:00",
                     DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-    private static final Logger LOGGER = Logger.getLogger(Main.class);
+    private static final Logger logger = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
         /*
@@ -140,9 +140,9 @@ public class Main {
     }
 
     private static void createAndPrintMovie(Movie movie) {
-        LOGGER.info("Creating the movie-object: " + movie);
+        logger.info("Creating the movie-object: " + movie);
         movie = movieService.create(movie);
-        LOGGER.info("Successfully created: " + movie);
+        logger.info("Successfully created: " + movie);
     }
 
     private static void printAllMovies() {
@@ -151,9 +151,9 @@ public class Main {
     }
 
     private static void createAndPrintCinemaHall(CinemaHall cinemaHall) {
-        LOGGER.info("Creating the cinema hall-object:");
+        logger.info("Creating the cinema hall-object:");
         cinemaHall = cinemaHallService.create(cinemaHall);
-        LOGGER.info("Successfully created: " + cinemaHall);
+        logger.info("Successfully created: " + cinemaHall);
     }
 
     private static void printAllCinemaHalls() {
@@ -162,9 +162,9 @@ public class Main {
     }
 
     private static void createAndPrintMovieSession(MovieSession movieSession) {
-        LOGGER.info("Creating the movie session-object:");
+        logger.info("Creating the movie session-object:");
         movieSession = movieSessionService.create(movieSession);
-        LOGGER.info("Successfully created: " + movieSession);
+        logger.info("Successfully created: " + movieSession);
     }
 
     private static void findAndPrintAvailableMovieSessions(Long movieId, LocalDate date) {
@@ -178,26 +178,26 @@ public class Main {
     }
 
     private static void registerAndPrintUser(String email, String password) {
-        LOGGER.warn("Registering the user with the e-mail - " + email
+        logger.warn("Registering the user with the e-mail - " + email
                 + " and the password - " + password);
         User user;
         try {
             user = authenticationService.register(email, password);
-            LOGGER.info("The user " + user + " was registered successfully!");
+            logger.info("The user " + user + " was registered successfully!");
         } catch (Exception exception) {
-            LOGGER.error("Failed to create the user due to using the not unique e-mail", exception);
+            logger.error("Failed to create the user due to using the not unique e-mail", exception);
         }
     }
 
     private static void loginAndPrintUser(String email, String password) {
-        LOGGER.warn("Authenticating the user with the e-mail - " + email
+        logger.warn("Authenticating the user with the e-mail - " + email
                 + " and the password - " + password);
         User user;
         try {
             user = authenticationService.login(email, password);
-            LOGGER.info("The user " + user + " was authenticated successfully!");
+            logger.info("The user " + user + " was authenticated successfully!");
         } catch (Exception exception) {
-            LOGGER.error("Invalid input data", exception);
+            logger.error("Invalid input data", exception);
         }
     }
 
@@ -223,13 +223,13 @@ public class Main {
 
     private static void addSessionToShoppingCart(MovieSession movieSession, User user) {
         shoppingCartService.addSession(movieSession, user);
-        LOGGER.info("The movie session - " + movieSession
+        logger.info("The movie session - " + movieSession
                 + " was added to the shopping cart of the user - " + user);
     }
 
     private static void clearShoppingCart(ShoppingCart shoppingCart) {
         shoppingCartService.clear(shoppingCart);
-        LOGGER.info("The shopping cart with id = " + shoppingCart.getId()
+        logger.info("The shopping cart with id = " + shoppingCart.getId()
                 + " was cleared successfully");
     }
 
@@ -239,10 +239,10 @@ public class Main {
     }
 
     private static void completeOrder(ShoppingCart shoppingCart) {
-        LOGGER.info("Completing the order of the shopping cart - "
+        logger.info("Completing the order of the shopping cart - "
                 + shoppingCartService.getByUser(shoppingCart.getUser()));
         Order order = orderService.completeOrder(shoppingCart);
-        LOGGER.info("The order: " + order + " of the shopping cart - " + shoppingCart.getId()
+        logger.info("The order: " + order + " of the shopping cart - " + shoppingCart.getId()
                 + " was completed successfully");
     }
 
