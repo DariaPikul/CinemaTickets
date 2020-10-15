@@ -14,10 +14,10 @@ import com.dev.cinema.service.interfaces.MovieSessionService;
 import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import com.dev.cinema.service.interfaces.UserService;
-import org.apache.log4j.Logger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.apache.log4j.Logger;
 
 public class Main {
     private static final Injector injector = Injector.getInstance("com.dev.cinema");
@@ -229,7 +229,8 @@ public class Main {
 
     private static void clearShoppingCart(ShoppingCart shoppingCart) {
         shoppingCartService.clear(shoppingCart);
-        LOGGER.info("The shopping cart with id = " + shoppingCart.getId() + " was cleared successfully");
+        LOGGER.info("The shopping cart with id = " + shoppingCart.getId()
+                + " was cleared successfully");
     }
 
     private static void printAllOrders() {

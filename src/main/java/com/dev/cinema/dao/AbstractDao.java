@@ -3,12 +3,14 @@ package com.dev.cinema.dao;
 import com.dev.cinema.exceptions.DatabaseDataExchangeException;
 import com.dev.cinema.util.HibernateUtil;
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public abstract class AbstractDao<T> {
+    private static final Logger LOGGER = Logger.getLogger(AbstractDao.class);
     protected final SessionFactory factory;
 
     protected AbstractDao() {
