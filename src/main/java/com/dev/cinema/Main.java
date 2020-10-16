@@ -142,7 +142,6 @@ public class Main {
     private static void createAndPrintMovie(Movie movie) {
         logger.info("Creating the movie-object: " + movie);
         movie = movieService.create(movie);
-        logger.info("Successfully created: " + movie);
     }
 
     private static void printAllMovies() {
@@ -153,7 +152,6 @@ public class Main {
     private static void createAndPrintCinemaHall(CinemaHall cinemaHall) {
         logger.info("Creating the cinema hall-object:");
         cinemaHall = cinemaHallService.create(cinemaHall);
-        logger.info("Successfully created: " + cinemaHall);
     }
 
     private static void printAllCinemaHalls() {
@@ -164,7 +162,6 @@ public class Main {
     private static void createAndPrintMovieSession(MovieSession movieSession) {
         logger.info("Creating the movie session-object:");
         movieSession = movieSessionService.create(movieSession);
-        logger.info("Successfully created: " + movieSession);
     }
 
     private static void findAndPrintAvailableMovieSessions(Long movieId, LocalDate date) {

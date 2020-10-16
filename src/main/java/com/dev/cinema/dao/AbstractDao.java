@@ -32,9 +32,8 @@ public abstract class AbstractDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            String message = "Failed to create the entity - " + entity;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to create the entity - "
+                    + entity, exception);
         } finally {
             if (session != null) {
                 session.close();
@@ -56,9 +55,8 @@ public abstract class AbstractDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            String message = "Failed to update the entity - " + entity;
-            logger.error(message, exception);
-            throw new DatabaseDataExchangeException(message, exception);
+            throw new DatabaseDataExchangeException("Failed to update the entity - "
+                    + entity, exception);
         } finally {
             if (session != null) {
                 session.close();
