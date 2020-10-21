@@ -4,6 +4,7 @@ import com.dev.cinema.library.Injector;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.Order;
 import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
 import com.dev.cinema.security.AuthenticationService;
@@ -16,6 +17,7 @@ import com.dev.cinema.service.interfaces.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.apache.log4j.Logger;
 
 public class Main {
     private static final Injector injector = Injector.getInstance("com.dev.cinema");
@@ -56,6 +58,7 @@ public class Main {
     private static final LocalDateTime THIRD_SHOW_TIME =
             LocalDateTime.parse("03-12-2020 11:30:00",
                     DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+    private static final Logger logger = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
         /*
@@ -137,11 +140,8 @@ public class Main {
     }
 
     private static void createAndPrintMovie(Movie movie) {
-        System.out.println("\nCreating the movie-object:");
-        System.out.println(movie
-                + "\nInserting the movie-object data into the database:");
+        logger.info("Creating the movie-object: " + movie);
         movie = movieService.create(movie);
-        System.out.println(movie);
     }
 
     private static void printAllMovies() {
@@ -150,11 +150,8 @@ public class Main {
     }
 
     private static void createAndPrintCinemaHall(CinemaHall cinemaHall) {
-        System.out.println("\nCreating the cinema hall-object:");
-        System.out.println(cinemaHall
-                + "\nInserting the cinema hall-object data into the database:");
+        logger.info("Creating the cinema hall-object:");
         cinemaHall = cinemaHallService.create(cinemaHall);
-        System.out.println(cinemaHall);
     }
 
     private static void printAllCinemaHalls() {
@@ -163,11 +160,8 @@ public class Main {
     }
 
     private static void createAndPrintMovieSession(MovieSession movieSession) {
-        System.out.println("\nCreating the movie session-object:");
-        System.out.println(movieSession
-                + "\nInserting the movie session-object data into the database:");
+        logger.info("Creating the movie session-object:");
         movieSession = movieSessionService.create(movieSession);
-        System.out.println(movieSession);
     }
 
     private static void findAndPrintAvailableMovieSessions(Long movieId, LocalDate date) {
@@ -181,27 +175,27 @@ public class Main {
     }
 
     private static void registerAndPrintUser(String email, String password) {
-        System.out.println("\nRegistering the user with the e-mail - " + email
+        logger.warn("Registering the user with the e-mail - " + email
                 + " and the password - " + password);
         User user;
         try {
             user = authenticationService.register(email, password);
+            logger.info("The user " + user + " was registered successfully!");
         } catch (Exception exception) {
-            System.out.println("Oops! You did it again! You've used this e-mail :<");
+            logger.error("Failed to create the user due to using the not unique e-mail", exception);
         }
-        System.out.println("The user was registered successfully!");
     }
 
     private static void loginAndPrintUser(String email, String password) {
-        System.out.println("\nAuthenticating the user with the e-mail - " + email
+        logger.warn("Authenticating the user with the e-mail - " + email
                 + " and the password - " + password);
-        User user = null;
+        User user;
         try {
             user = authenticationService.login(email, password);
+            logger.info("The user " + user + " was authenticated successfully!");
         } catch (Exception exception) {
-            System.out.println("Oops! You did it again! You've used this e-mail :<");
+            logger.error("Invalid input data", exception);
         }
-        System.out.println("The user was authenticated successfully! " + user);
     }
 
     private static void printAllUsers() {
@@ -225,14 +219,15 @@ public class Main {
     }
 
     private static void addSessionToShoppingCart(MovieSession movieSession, User user) {
-        System.out.println("\nAdding the movie session - " + movieSession
-                + "to the shopping cart of the user - " + user);
         shoppingCartService.addSession(movieSession, user);
+        logger.info("The movie session - " + movieSession
+                + " was added to the shopping cart of the user - " + user);
     }
 
     private static void clearShoppingCart(ShoppingCart shoppingCart) {
-        System.out.println("\nClearing the shopping cart with id = " + shoppingCart.getId());
         shoppingCartService.clear(shoppingCart);
+        logger.info("The shopping cart with id = " + shoppingCart.getId()
+                + " was cleared successfully");
     }
 
     private static void printAllOrders() {
@@ -241,7 +236,11 @@ public class Main {
     }
 
     private static void completeOrder(ShoppingCart shoppingCart) {
-        orderService.completeOrder(shoppingCart);
+        logger.info("Completing the order of the shopping cart - "
+                + shoppingCartService.getByUser(shoppingCart.getUser()));
+        Order order = orderService.completeOrder(shoppingCart);
+        logger.info("The order: " + order + " of the shopping cart - " + shoppingCart.getId()
+                + " was completed successfully");
     }
 
     private static void printOrderHistoryByUser(User user) {
