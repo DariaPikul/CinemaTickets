@@ -1,6 +1,6 @@
 package com.dev.cinema;
 
-import com.dev.cinema.library.Injector;
+import com.dev.cinema.config.AppConfig;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.model.MovieSession;
@@ -18,23 +18,22 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
-    private static final Injector injector = Injector.getInstance("com.dev.cinema");
-    private static final MovieService movieService =
-            (MovieService) injector.getInstance(MovieService.class);
+    private static final AnnotationConfigApplicationContext context
+            = new AnnotationConfigApplicationContext(AppConfig.class);
+    private static final MovieService movieService = context.getBean(MovieService.class);
     private static final CinemaHallService cinemaHallService =
-            (CinemaHallService) injector.getInstance(CinemaHallService.class);
+            context.getBean(CinemaHallService.class);
     private static final MovieSessionService movieSessionService =
-            (MovieSessionService) injector.getInstance(MovieSessionService.class);
-    private static final UserService userService =
-            (UserService) injector.getInstance(UserService.class);
+            context.getBean(MovieSessionService.class);
+    private static final UserService userService = context.getBean(UserService.class);
     private static final AuthenticationService authenticationService =
-            (AuthenticationService) injector.getInstance(AuthenticationService.class);
+            context.getBean(AuthenticationService.class);
     private static final ShoppingCartService shoppingCartService =
-            (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
-    private static final OrderService orderService =
-            (OrderService) injector.getInstance(OrderService.class);
+            context.getBean(ShoppingCartService.class);
+    private static final OrderService orderService = context.getBean(OrderService.class);
     private static final String FIRST_EMAIL = "alice@mail.com";
     private static final String FIRST_PASSWORD = "AliceLovesBob";
     private static final String SECOND_EMAIL = "bob@mail.com";

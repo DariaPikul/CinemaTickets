@@ -2,7 +2,6 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.OrderDao;
-import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.Order;
 import com.dev.cinema.model.User;
 import java.util.List;
@@ -11,9 +10,15 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
+    protected OrderDaoImpl(SessionFactory factory) {
+        super(factory);
+    }
+
     @Override
     public List<Order> getAllByUser(User user) {
         try (Session session = factory.openSession()) {

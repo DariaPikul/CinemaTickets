@@ -2,7 +2,6 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.ShoppingCartDao;
-import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
 import java.util.List;
@@ -12,9 +11,15 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements ShoppingCartDao {
+    protected ShoppingCartDaoImpl(SessionFactory factory) {
+        super(factory);
+    }
+
     @Override
     public Optional<ShoppingCart> getByUser(User user) {
         try (Session session = factory.openSession()) {
