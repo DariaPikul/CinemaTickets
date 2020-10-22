@@ -16,22 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
+    private final MovieMapper movieMapper;
     private final MovieService movieService;
 
     @Autowired
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService,
+                           MovieMapper movieMapper) {
+        this.movieMapper = movieMapper;
         this.movieService = movieService;
     }
 
     @PostMapping("/")
     public Movie createMovie(@RequestBody MovieDto movieRequestDto) {
-        return movieService.create(MovieMapper.mapFromRequestDto(movieRequestDto));
+        return movieService.create(movieMapper.mapFromRequestDto(movieRequestDto));
     }
 
     @GetMapping
     public List<MovieDto> getAllMovies() {
         return movieService.getAll().stream()
-                .map(MovieMapper::mapToResponseDto)
+                .map(movieMapper::mapToResponseDto)
                 .collect(Collectors.toList());
     }
 }

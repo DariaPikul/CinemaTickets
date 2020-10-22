@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movie_sessions")
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
@@ -37,8 +37,8 @@ public class MovieSessionController {
 
     @GetMapping("/available")
     public List<MovieSessionDto> getAvailableMovieSessions(
-            @RequestParam Long movieId, @RequestParam LocalDate date) {
-        return movieSessionService.findAvailableSessions(movieId, date).stream()
+            @RequestParam Long movieId, @RequestParam String date) {
+        return movieSessionService.findAvailableSessions(movieId, LocalDate.parse(date)).stream()
                 .map(movieSessionMapper::mapToResponseDto)
                 .collect(Collectors.toList());
     }
