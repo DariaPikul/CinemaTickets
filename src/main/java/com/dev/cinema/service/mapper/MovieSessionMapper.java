@@ -21,7 +21,7 @@ public class MovieSessionMapper {
         this.movieService = movieService;
     }
 
-    public static MovieSessionDto mapToResponseDto(MovieSession movieSession) {
+    public MovieSessionDto mapToResponseDto(MovieSession movieSession) {
         return new MovieSessionDto(movieSession.getId(),
                 movieSession.getMovie().getId(),
                 movieSession.getCinemaHall().getId(),
