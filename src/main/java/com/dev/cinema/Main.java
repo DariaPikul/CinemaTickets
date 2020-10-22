@@ -139,38 +139,35 @@ public class Main {
     }
 
     private static void createAndPrintMovie(Movie movie) {
-        logger.info("Creating the movie-object: " + movie);
-        movie = movieService.create(movie);
+        movieService.create(movie);
     }
 
     private static void printAllMovies() {
-        System.out.println("\nAll movies:");
-        movieService.getAll().forEach(System.out::println);
+        logger.debug("All movies:");
+        movieService.getAll().forEach(logger::debug);
     }
 
     private static void createAndPrintCinemaHall(CinemaHall cinemaHall) {
-        logger.info("Creating the cinema hall-object:");
-        cinemaHall = cinemaHallService.create(cinemaHall);
+        cinemaHallService.create(cinemaHall);
     }
 
     private static void printAllCinemaHalls() {
-        System.out.println("\nAll cinema halls:");
-        cinemaHallService.getAll().forEach(System.out::println);
+        logger.debug("All cinema halls:");
+        cinemaHallService.getAll().forEach(logger::debug);
     }
 
     private static void createAndPrintMovieSession(MovieSession movieSession) {
-        logger.info("Creating the movie session-object:");
-        movieSession = movieSessionService.create(movieSession);
+        movieSessionService.create(movieSession);
     }
 
     private static void findAndPrintAvailableMovieSessions(Long movieId, LocalDate date) {
-        System.out.println("\nSearching for the available movie sessions:");
-        System.out.println(movieSessionService.findAvailableSessions(movieId, date));
+        logger.debug("Searching for the available movie sessions:");
+        logger.debug(movieSessionService.findAvailableSessions(movieId, date));
     }
 
     private static void printAllMovieSessions() {
-        System.out.println("\nAll movie sessions:");
-        movieSessionService.getAll().forEach(System.out::println);
+        logger.debug("All movie sessions:");
+        movieSessionService.getAll().forEach(logger::debug);
     }
 
     private static void registerAndPrintUser(String email, String password) {
@@ -198,23 +195,23 @@ public class Main {
     }
 
     private static void printAllUsers() {
-        System.out.println("\nAll users:");
-        userService.getAll().forEach(System.out::println);
+        logger.debug("All users:");
+        userService.getAll().forEach(logger::debug);
     }
 
     private static void findAndPrintUserByEmail(String email) {
-        System.out.println("\nSearching for the user with email: " + email);
-        System.out.println(userService.findByEmail(email));
+        logger.debug("Searching for the user with email: " + email);
+        logger.debug(userService.findByEmail(email));
     }
 
     private static void getAndPrintShoppingCartByUser(User user) {
-        System.out.println("\nSearching for the shopping cart by user: " + user);
-        System.out.println(shoppingCartService.getByUser(user));
+        logger.debug("Searching for the shopping cart by user: " + user);
+        logger.debug(shoppingCartService.getByUser(user));
     }
 
     private static void printAllShoppingCarts() {
-        System.out.println("\nAll shopping carts:");
-        shoppingCartService.getAll().forEach(System.out::println);
+        logger.debug("All shopping carts:");
+        shoppingCartService.getAll().forEach(logger::debug);
     }
 
     private static void addSessionToShoppingCart(MovieSession movieSession, User user) {
@@ -230,8 +227,8 @@ public class Main {
     }
 
     private static void printAllOrders() {
-        System.out.println("\nAll orders:");
-        orderService.getAll().forEach(System.out::println);
+        logger.debug("All orders:");
+        orderService.getAll().forEach(logger::debug);
     }
 
     private static void completeOrder(ShoppingCart shoppingCart) {
@@ -243,6 +240,7 @@ public class Main {
     }
 
     private static void printOrderHistoryByUser(User user) {
-        orderService.getOrderHistory(user).forEach(System.out::println);
+        logger.debug("User's - " + user + " - orders:");
+        orderService.getOrderHistory(user).forEach(logger::debug);
     }
 }
