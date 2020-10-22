@@ -23,7 +23,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @PostMapping
+    @PostMapping("/")
     public Movie createMovie(@RequestBody MovieDto movieRequestDto) {
         return movieService.create(MovieMapper.mapFromRequestDto(movieRequestDto));
     }
