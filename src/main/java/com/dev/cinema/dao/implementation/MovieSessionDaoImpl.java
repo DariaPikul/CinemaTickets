@@ -3,7 +3,6 @@ package com.dev.cinema.dao.implementation;
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.MovieSessionDao;
 import com.dev.cinema.exceptions.DatabaseDataExchangeException;
-import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.MovieSession;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,9 +13,15 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements MovieSessionDao {
+    protected MovieSessionDaoImpl(SessionFactory factory) {
+        super(factory);
+    }
+
     @Override
     public List<MovieSession> getAll() {
         try (Session session = factory.openSession()) {

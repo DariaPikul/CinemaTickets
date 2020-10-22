@@ -2,14 +2,19 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.UserDao;
-import com.dev.cinema.library.Dao;
 import com.dev.cinema.model.User;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
+    protected UserDaoImpl(SessionFactory factory) {
+        super(factory);
+    }
+
     @Override
     public Optional<User> findByEmail(String email) {
         try (Session session = factory.openSession()) {
