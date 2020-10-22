@@ -2,8 +2,8 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.OrderDao;
-import com.dev.cinema.model.Order;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.Order;
+import com.dev.cinema.model.entity.User;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -30,7 +30,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public List<Order> getAll() {
+    public List<Order> getAll(Class<Order> clazz) {
         try (Session session = factory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Order> getAllOrdersQuery =

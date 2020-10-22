@@ -1,12 +1,12 @@
 package com.dev.cinema;
 
 import com.dev.cinema.config.AppConfig;
-import com.dev.cinema.model.CinemaHall;
-import com.dev.cinema.model.Movie;
-import com.dev.cinema.model.MovieSession;
-import com.dev.cinema.model.Order;
-import com.dev.cinema.model.ShoppingCart;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.CinemaHall;
+import com.dev.cinema.model.entity.Movie;
+import com.dev.cinema.model.entity.MovieSession;
+import com.dev.cinema.model.entity.Order;
+import com.dev.cinema.model.entity.ShoppingCart;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.security.AuthenticationService;
 import com.dev.cinema.service.interfaces.CinemaHallService;
 import com.dev.cinema.service.interfaces.MovieService;

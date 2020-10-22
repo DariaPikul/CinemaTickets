@@ -1,10 +1,10 @@
 package com.dev.cinema.service.implementation;
 
 import com.dev.cinema.dao.interfaces.OrderDao;
-import com.dev.cinema.model.Order;
-import com.dev.cinema.model.ShoppingCart;
-import com.dev.cinema.model.Ticket;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.Order;
+import com.dev.cinema.model.entity.ShoppingCart;
+import com.dev.cinema.model.entity.Ticket;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import java.time.LocalDateTime;
@@ -30,6 +30,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order get(Long id) {
+        return orderDao.get(id, Order.class).get();
+    }
+
+    @Override
     public Order completeOrder(ShoppingCart shoppingCart) {
         User user = shoppingCart.getUser();
         List<Ticket> tickets = new ArrayList<>(shoppingCart.getTickets());
@@ -45,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAll() {
-        return orderDao.getAll();
+        return orderDao.getAll(Order.class);
     }
 
     @Override

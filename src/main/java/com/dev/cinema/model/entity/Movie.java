@@ -1,4 +1,4 @@
-package com.dev.cinema.model;
+package com.dev.cinema.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +19,12 @@ public class Movie {
     }
 
     public Movie(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
+    public Movie(Long id, String title, String description) {
+        this.id = id;
         this.title = title;
         this.description = description;
     }

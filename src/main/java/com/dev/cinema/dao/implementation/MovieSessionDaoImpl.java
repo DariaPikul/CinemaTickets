@@ -3,7 +3,7 @@ package com.dev.cinema.dao.implementation;
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.MovieSessionDao;
 import com.dev.cinema.exceptions.DatabaseDataExchangeException;
-import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.entity.MovieSession;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -23,7 +23,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public List<MovieSession> getAll() {
+    public List<MovieSession> getAll(Class<MovieSession> clazz) {
         try (Session session = factory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<MovieSession> getAllMovieSessionsQuery =

@@ -1,7 +1,7 @@
 package com.dev.cinema.service.implementation;
 
 import com.dev.cinema.dao.interfaces.UserDao;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.UserService;
 import com.dev.cinema.util.HashUtil;
 import java.util.List;
@@ -27,13 +27,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User get(Long id) {
+        return userDao.get(id, User.class).get();
+    }
+
+    @Override
     public Optional<User> findByEmail(String email) {
         return userDao.findByEmail(email);
     }
 
     @Override
     public List<User> getAll() {
-        return userDao.getAll();
+        return userDao.getAll(User.class);
     }
 
     @Override

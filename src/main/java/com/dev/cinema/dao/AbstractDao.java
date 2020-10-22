@@ -2,6 +2,7 @@ package com.dev.cinema.dao;
 
 import com.dev.cinema.exceptions.DatabaseDataExchangeException;
 import java.util.List;
+import java.util.Optional;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,6 +40,12 @@ public abstract class AbstractDao<T> {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    public Optional<T> get(Long id, Class<T> clazz) {
+        try (Session session = factory.openSession()) {
+            return Optional.of(session.get(clazz, id));
         }
     }
 

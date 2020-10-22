@@ -2,10 +2,10 @@ package com.dev.cinema.service.implementation;
 
 import com.dev.cinema.dao.interfaces.ShoppingCartDao;
 import com.dev.cinema.dao.interfaces.TicketDao;
-import com.dev.cinema.model.MovieSession;
-import com.dev.cinema.model.ShoppingCart;
-import com.dev.cinema.model.Ticket;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.MovieSession;
+import com.dev.cinema.model.entity.ShoppingCart;
+import com.dev.cinema.model.entity.Ticket;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +40,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    public ShoppingCart get(Long id) {
+        return shoppingCartDao.get(id, ShoppingCart.class).get();
+    }
+
+    @Override
     public List<ShoppingCart> getAll() {
-        return shoppingCartDao.getAll();
+        return shoppingCartDao.getAll(ShoppingCart.class);
     }
 
     @Override

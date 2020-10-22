@@ -1,7 +1,7 @@
 package com.dev.cinema.service.implementation;
 
 import com.dev.cinema.dao.interfaces.CinemaHallDao;
-import com.dev.cinema.model.CinemaHall;
+import com.dev.cinema.model.entity.CinemaHall;
 import com.dev.cinema.service.interfaces.CinemaHallService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,13 @@ public class CinemaHallServiceImpl implements CinemaHallService {
     }
 
     @Override
+    public CinemaHall get(Long id) {
+        return cinemaHallDao.get(id, CinemaHall.class).get();
+    }
+
+    @Override
     public List<CinemaHall> getAll() {
-        return cinemaHallDao.getAll();
+        return cinemaHallDao.getAll(CinemaHall.class);
     }
 
     @Override
