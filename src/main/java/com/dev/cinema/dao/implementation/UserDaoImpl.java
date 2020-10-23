@@ -3,7 +3,6 @@ package com.dev.cinema.dao.implementation;
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.UserDao;
 import com.dev.cinema.model.entity.User;
-import java.util.List;
 import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,10 +21,5 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                     .setParameter("email", email)
                     .uniqueResultOptional();
         }
-    }
-
-    @Override
-    public List<User> getAll() {
-        return super.getAll(User.class);
     }
 }

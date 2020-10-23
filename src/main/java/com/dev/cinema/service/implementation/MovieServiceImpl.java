@@ -23,7 +23,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> getAll() {
-        return movieDao.getAll();
+        return movieDao.getAll(Movie.class);
     }
 
     @Override

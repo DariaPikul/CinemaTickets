@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        return userDao.getAll();
+        return userDao.getAll(User.class);
     }
 
     @Override

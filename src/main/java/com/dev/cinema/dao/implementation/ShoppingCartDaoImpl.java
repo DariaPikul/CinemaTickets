@@ -31,7 +31,7 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
     }
 
     @Override
-    public List<ShoppingCart> getAll() {
+    public List<ShoppingCart> getAll(Class<ShoppingCart> clazz) {
         try (Session session = factory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<ShoppingCart> getAllShoppingCartsQuery =

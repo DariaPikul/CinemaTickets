@@ -23,7 +23,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public List<MovieSession> getAll() {
+    public List<MovieSession> getAll(Class<MovieSession> clazz) {
         try (Session session = factory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<MovieSession> getAllMovieSessionsQuery =

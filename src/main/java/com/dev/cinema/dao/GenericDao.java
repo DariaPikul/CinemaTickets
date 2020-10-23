@@ -5,7 +5,7 @@ import java.util.List;
 public interface GenericDao<T> {
     T create(T entity);
 
-    List<T> getAll();
+    List<T> getAll(Class<T> clazz);
 
     void update(T entity);
 }
