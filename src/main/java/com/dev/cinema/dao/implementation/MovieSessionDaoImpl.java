@@ -3,7 +3,7 @@ package com.dev.cinema.dao.implementation;
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.MovieSessionDao;
 import com.dev.cinema.exceptions.DatabaseDataExchangeException;
-import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.entity.MovieSession;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;

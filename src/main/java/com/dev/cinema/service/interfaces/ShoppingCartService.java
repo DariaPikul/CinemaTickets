@@ -1,9 +1,8 @@
 package com.dev.cinema.service.interfaces;
 
-import com.dev.cinema.model.MovieSession;
-import com.dev.cinema.model.ShoppingCart;
-import com.dev.cinema.model.User;
-import com.dev.cinema.service.GenericService;
+import com.dev.cinema.model.entity.MovieSession;
+import com.dev.cinema.model.entity.ShoppingCart;
+import com.dev.cinema.model.entity.User;
 
 public interface ShoppingCartService extends GenericService<ShoppingCart> {
     ShoppingCart getByUser(User user);

@@ -2,8 +2,8 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.OrderDao;
-import com.dev.cinema.model.Order;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.Order;
+import com.dev.cinema.model.entity.User;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

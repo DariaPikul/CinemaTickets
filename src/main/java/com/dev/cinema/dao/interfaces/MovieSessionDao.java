@@ -1,7 +1,7 @@
 package com.dev.cinema.dao.interfaces;
 
 import com.dev.cinema.dao.GenericDao;
-import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.entity.MovieSession;
 import java.time.LocalDate;
 import java.util.List;
 

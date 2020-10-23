@@ -1,7 +1,7 @@
 package com.dev.cinema.service.implementation;
 
 import com.dev.cinema.dao.interfaces.MovieDao;
-import com.dev.cinema.model.Movie;
+import com.dev.cinema.model.entity.Movie;
 import com.dev.cinema.service.interfaces.MovieService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

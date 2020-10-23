@@ -1,7 +1,7 @@
 package com.dev.cinema.service.implementation;
 
 import com.dev.cinema.dao.interfaces.UserDao;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.UserService;
 import com.dev.cinema.util.HashUtil;
 import java.util.List;

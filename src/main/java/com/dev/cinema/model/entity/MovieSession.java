@@ -1,4 +1,4 @@
-package com.dev.cinema.model;
+package com.dev.cinema.model.entity;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

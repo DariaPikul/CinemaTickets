@@ -2,7 +2,7 @@ package com.dev.cinema.dao.implementation;
 
 import com.dev.cinema.dao.AbstractDao;
 import com.dev.cinema.dao.interfaces.TicketDao;
-import com.dev.cinema.model.Ticket;
+import com.dev.cinema.model.entity.Ticket;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
