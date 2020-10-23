@@ -1,21 +1,21 @@
 package com.dev.cinema.model.dto;
 
-public class UserDto {
+public class UserResponseDto {
     private Long id;
     private String email;
     private String password;
     private String repeatedPassword;
 
-    public UserDto() {
+    public UserResponseDto() {
     }
 
-    public UserDto(Long id, String email, String password) {
+    public UserResponseDto(Long id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
     }
 
-    public UserDto(Long id, String email, String password, String repeatedPassword) {
+    public UserResponseDto(Long id, String email, String password, String repeatedPassword) {
         this.id = id;
         this.email = email;
         this.password = password;

@@ -1,15 +1,15 @@
 package com.dev.cinema.model.dto;
 
-public class MovieSessionDto {
+public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
     private Long cinemaHallId;
     private String showTime;
 
-    public MovieSessionDto() {
+    public MovieSessionResponseDto() {
     }
 
-    public MovieSessionDto(Long id, Long movieId, Long cinemaHallId, String showTime) {
+    public MovieSessionResponseDto(Long id, Long movieId, Long cinemaHallId, String showTime) {
         this.id = id;
         this.movieId = movieId;
         this.cinemaHallId = cinemaHallId;

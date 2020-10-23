@@ -1,6 +1,7 @@
 package com.dev.cinema.service.mapper;
 
-import com.dev.cinema.model.dto.MovieSessionDto;
+import com.dev.cinema.model.dto.MovieSessionRequestDto;
+import com.dev.cinema.model.dto.MovieSessionResponseDto;
 import com.dev.cinema.model.entity.MovieSession;
 import com.dev.cinema.service.interfaces.CinemaHallService;
 import com.dev.cinema.service.interfaces.MovieService;
@@ -21,19 +22,18 @@ public class MovieSessionMapper {
         this.movieService = movieService;
     }
 
-    public MovieSessionDto mapToResponseDto(MovieSession movieSession) {
-        return new MovieSessionDto(movieSession.getId(),
+    public MovieSessionResponseDto mapToResponseDto(MovieSession movieSession) {
+        return new MovieSessionResponseDto(movieSession.getId(),
                 movieSession.getMovie().getId(),
                 movieSession.getCinemaHall().getId(),
                 movieSession.getShowTime().format(DATE_TIME_FORMATTER));
     }
 
-    public MovieSession mapFromRequestDto(MovieSessionDto movieSessionDto) {
+    public MovieSession mapFromRequestDto(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
-        movieSession.setId(movieSessionDto.getId());
-        movieSession.setMovie(movieService.get(movieSessionDto.getMovieId()));
-        movieSession.setCinemaHall(cinemaHallService.get(movieSessionDto.getCinemaHallId()));
-        movieSession.setShowTime(LocalDateTime.parse(movieSessionDto.getShowTime()));
+        movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
+        movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
+        movieSession.setShowTime(LocalDateTime.parse(movieSessionRequestDto.getShowTime()));
         return movieSession;
     }
 }

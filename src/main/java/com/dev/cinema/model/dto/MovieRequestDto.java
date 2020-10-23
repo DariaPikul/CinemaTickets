@@ -1,25 +1,15 @@
 package com.dev.cinema.model.dto;
 
-public class MovieDto {
-    private Long id;
+public class MovieRequestDto {
     private String title;
     private String description;
 
-    public MovieDto() {
+    public MovieRequestDto() {
     }
 
-    public MovieDto(Long id, String title, String description) {
-        this.id = id;
+    public MovieRequestDto(String title, String description) {
         this.title = title;
         this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
