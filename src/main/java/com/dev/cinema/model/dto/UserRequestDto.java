@@ -1,26 +1,8 @@
 package com.dev.cinema.model.dto;
 
 public class UserRequestDto {
-    private Long id;
     private String email;
     private String password;
-
-    public UserRequestDto() {
-    }
-
-    public UserRequestDto(Long id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;

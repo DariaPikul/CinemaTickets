@@ -5,9 +5,6 @@ public class MovieResponseDto {
     private String title;
     private String description;
 
-    public MovieResponseDto() {
-    }
-
     public MovieResponseDto(Long id, String title, String description) {
         this.id = id;
         this.title = title;
