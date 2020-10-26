@@ -30,6 +30,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order get(Long id) {
+        return orderDao.get(id, Order.class).get();
+    }
+
+    @Override
     public Order completeOrder(ShoppingCart shoppingCart) {
         User user = shoppingCart.getUser();
         List<Ticket> tickets = new ArrayList<>(shoppingCart.getTickets());
