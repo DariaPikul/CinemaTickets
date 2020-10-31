@@ -1,2 +1,2 @@
 # CinemaTickets
-Cinema: Selling Tickets (Hibernate)
+Cinema: Selling Tickets (Hibernate, Spring)
